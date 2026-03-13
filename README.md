@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ausflug-Abstimmung</title>
+    <title>Familienausflug - Gemeinsam abstimmen</title>
     <style>
         * {
             margin: 0;
@@ -13,10 +13,9 @@
  
         :root {
             --primary: #667eea;
-            --secondary: #667eea;
+            --light-bg: #F3F4F9;
             --accent: #1A1A2E;
             --success: #06D6A0;
-            --light-bg: #F3F4F9;
             --card-shadow: 0 10px 40px rgba(102, 126, 234, 0.15);
             --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
@@ -54,7 +53,6 @@
             font-size: 2.5em;
             margin-bottom: 10px;
             font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
  
         .header p {
@@ -62,46 +60,61 @@
             opacity: 0.95;
         }
  
-        /* Steps Navigation */
-        .steps-nav {
-            display: flex;
-            gap: 8px;
-            padding: 15px 20px;
+        /* Progress Bar */
+        .progress-container {
             background: var(--light-bg);
-            overflow-x: auto;
-            justify-content: center;
+            padding: 20px;
         }
  
-        .step-indicator {
-            width: 45px;
-            height: 45px;
+        .progress-steps {
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+ 
+        .step-dot {
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
+            background: white;
+            border: 2px solid #ddd;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            cursor: pointer;
-            transition: var(--transition);
-            background: white;
             color: #999;
-            border: 2px solid #ddd;
-            font-size: 0.9em;
+            transition: var(--transition);
+            cursor: pointer;
         }
  
-        .step-indicator.active {
-            background: #667eea;
+        .step-dot.active {
+            background: var(--primary);
             color: white;
-            border-color: #667eea;
+            border-color: var(--primary);
             transform: scale(1.1);
         }
  
-        .step-indicator.completed {
+        .step-dot.completed {
             background: var(--success);
             color: white;
             border-color: var(--success);
         }
  
-        /* Content Area */
+        .progress-bar {
+            height: 4px;
+            background: #e0e0e0;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+ 
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            transition: width 0.5s ease;
+        }
+ 
+        /* Content */
         .content {
             flex: 1;
             padding: 30px 20px;
@@ -164,17 +177,7 @@
             word-break: break-all;
         }
  
-        /* Selection Step */
-        .selection-container {
-            margin-bottom: 20px;
-        }
- 
-        .selection-container h3 {
-            color: var(--accent);
-            margin-bottom: 20px;
-            font-size: 1.3em;
-        }
- 
+        /* Route Selection */
         .person-section {
             background: var(--light-bg);
             border-radius: 15px;
@@ -183,19 +186,42 @@
             border-left: 5px solid #667eea;
         }
  
-        .person-section h4 {
+        .person-section h3 {
             color: #667eea;
             margin-bottom: 15px;
-            font-size: 1.15em;
+            font-size: 1.3em;
         }
  
-        .trip-list {
+        .route-intro {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+ 
+        .route-intro h4 {
+            color: #667eea;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+ 
+        .route-intro p {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+ 
+        .route-list {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
+            max-height: 400px;
+            overflow-y: auto;
         }
  
-        .trip-option {
+        .route-item {
             background: white;
             border: 2px solid #e0e0e0;
             border-radius: 12px;
@@ -207,19 +233,19 @@
             gap: 12px;
         }
  
-        .trip-option:hover {
+        .route-item:hover {
             border-color: #667eea;
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
             transform: translateX(5px);
         }
  
-        .trip-option.selected {
+        .route-item.selected {
             background: rgba(102, 126, 234, 0.08);
             border-color: #667eea;
             font-weight: 600;
         }
  
-        .trip-checkbox {
+        .route-checkbox {
             width: 24px;
             height: 24px;
             border: 2px solid #ddd;
@@ -231,78 +257,113 @@
             flex-shrink: 0;
         }
  
-        .trip-option.selected .trip-checkbox {
+        .route-item.selected .route-checkbox {
             background: #667eea;
             border-color: #667eea;
             color: white;
         }
  
-        .trip-text {
+        .route-info {
             flex: 1;
         }
  
-        .trip-text strong {
-            display: block;
+        .route-name {
+            font-weight: bold;
             color: var(--accent);
+            display: block;
             margin-bottom: 3px;
         }
  
-        .trip-text small {
+        .route-desc {
+            font-size: 0.85em;
             color: #999;
         }
  
-        /* Date Selection Step */
-        .calendar-section {
+        /* Date Selection */
+        .calendar-container {
+            background: var(--light-bg);
+            border-radius: 15px;
+            padding: 20px;
             margin-bottom: 25px;
         }
  
-        .calendar-section h4 {
+        .calendar-container h4 {
             color: #667eea;
             margin-bottom: 15px;
             font-size: 1.1em;
         }
  
-        .date-grid {
+        .month-selector {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
  
-        .date-option {
+        .month-btn {
             background: white;
             border: 2px solid #e0e0e0;
             border-radius: 10px;
             padding: 12px;
-            text-align: center;
             cursor: pointer;
             transition: var(--transition);
+            text-align: center;
+            font-weight: 500;
+            color: #666;
             font-size: 0.9em;
         }
  
-        .date-option:hover {
+        .month-btn:hover {
             border-color: #667eea;
-            transform: scale(1.05);
         }
  
-        .date-option.selected {
+        .month-btn.selected {
             background: #667eea;
             color: white;
             border-color: #667eea;
         }
  
-        .date-option .day {
+        .day-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+            gap: 8px;
+        }
+ 
+        .day-btn {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 10px 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.85em;
+        }
+ 
+        .day-btn:hover {
+            border-color: #667eea;
+            transform: scale(1.05);
+        }
+ 
+        .day-btn.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+ 
+        .day-label {
             font-weight: bold;
             display: block;
+            font-size: 0.7em;
+            color: #666;
         }
  
-        .date-option .date {
-            font-size: 0.85em;
-            opacity: 0.8;
+        .day-number {
             display: block;
+            font-weight: bold;
         }
  
-        /* Results Step */
+        /* Results */
         .results-container {
             text-align: center;
         }
@@ -313,8 +374,15 @@
             font-size: 1.6em;
         }
  
-        .results-ranking {
+        .results-section {
             margin-bottom: 30px;
+        }
+ 
+        .results-section h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            text-align: left;
         }
  
         .ranking-item {
@@ -341,19 +409,6 @@
             font-weight: bold;
             font-size: 1.3em;
             flex-shrink: 0;
-        }
- 
-        .ranking-position.first {
-            background: #667eea;
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
-        }
- 
-        .ranking-position.second {
-            background: #667eea;
-        }
- 
-        .ranking-position.third {
-            background: #667eea;
         }
  
         .ranking-info {
@@ -386,42 +441,6 @@
             background: #667eea;
             transition: width 0.5s ease-out;
             border-radius: 3px;
-        }
- 
-        .date-ranking {
-            background: var(--light-bg);
-            border-radius: 15px;
-            padding: 20px;
-            margin-top: 25px;
-        }
- 
-        .date-ranking h3 {
-            color: #667eea;
-            margin-bottom: 15px;
-        }
- 
-        .date-item {
-            background: white;
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
- 
-        .date-item-date {
-            font-weight: bold;
-            color: var(--accent);
-        }
- 
-        .date-item-votes {
-            background: #667eea;
-            color: white;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: bold;
         }
  
         /* Buttons */
@@ -475,26 +494,6 @@
             min-width: auto;
         }
  
-        /* Input Fields */
-        input[type="text"],
-        textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 1em;
-            font-family: inherit;
-            transition: var(--transition);
-            margin-bottom: 15px;
-        }
- 
-        input[type="text"]:focus,
-        textarea:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
-        }
- 
         /* Animations */
         @keyframes slideDown {
             from {
@@ -519,24 +518,16 @@
         }
  
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
  
         @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
  
-        /* Mobile Optimization */
+        /* Mobile */
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 2em;
@@ -554,18 +545,14 @@
                 width: 100%;
             }
  
-            .date-grid {
-                grid-template-columns: repeat(3, 1fr);
+            .month-selector {
+                grid-template-columns: repeat(2, 1fr);
             }
  
-            .steps-nav {
-                padding: 12px 10px;
-            }
- 
-            .step-indicator {
-                width: 40px;
-                height: 40px;
-                font-size: 0.8em;
+            .step-dot {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9em;
             }
         }
  
@@ -587,46 +574,17 @@
                 font-size: 1.6em;
             }
  
-            .person-section {
-                padding: 15px;
+            .month-selector {
+                grid-template-columns: repeat(2, 1fr);
             }
  
-            .ranking-item {
-                flex-direction: column;
-                text-align: center;
+            .day-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
  
-            .ranking-info {
-                text-align: center;
+            .route-list {
+                max-height: 300px;
             }
-        }
- 
-        /* Success Animation */
-        .success-message {
-            background: linear-gradient(135deg, var(--success), #00D98E);
-            color: white;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            animation: slideDown 0.5s ease-out;
-            text-align: center;
-            font-weight: bold;
-        }
- 
-        /* Loading */
-        .spinner {
-            border: 4px solid rgba(102, 126, 234, 0.1);
-            border-top: 4px solid #667eea;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
-        }
- 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -634,16 +592,21 @@
     <div class="container">
         <!-- Header -->
         <div class="header">
-            <h1>🎉 Geburtstagsabenteuer</h1>
-            <p>Wir suchen gemeinsam den perfekten Ausflug!</p>
+            <h1>🎉 Familienausflug</h1>
+            <p>Gemeinsam zum perfekten Abenteuer</p>
         </div>
  
-        <!-- Steps Navigation -->
-        <div class="steps-nav">
-            <div class="step-indicator active" data-step="0">1</div>
-            <div class="step-indicator" data-step="1">2</div>
-            <div class="step-indicator" data-step="2">3</div>
-            <div class="step-indicator" data-step="3">4</div>
+        <!-- Progress -->
+        <div class="progress-container">
+            <div class="progress-steps">
+                <div class="step-dot active" data-step="0">1</div>
+                <div class="step-dot" data-step="1">2</div>
+                <div class="step-dot" data-step="2">3</div>
+                <div class="step-dot" data-step="3">4</div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
         </div>
  
         <!-- Content -->
@@ -666,7 +629,7 @@
                     </div>
  
                     <p style="margin-top: 20px; font-size: 0.9em; color: #999;">
-                        Danach wählt jeder ihre/seine Top 3 Lieblings-Ausflüge aus und wir bestimmen gemeinsam den besten Termin!
+                        Dann wählt jeder seine Top 3 Lieblings-Ausflüge aus und wir bestimmen gemeinsam den besten Termin!
                     </p>
                 </div>
                 <div class="button-group">
@@ -674,32 +637,18 @@
                 </div>
             </div>
  
-            <!-- Step 2: Selection -->
+            <!-- Step 2: Route Selection (nacheinander pro Person) -->
             <div class="step" data-step="1">
-                <div class="selection-container">
-                    <h3>📍 Wählt eure Top 3 Ausflüge</h3>
-                    <p style="color: #666; margin-bottom: 25px; font-size: 0.95em;">
-                        Jede Person wählt ihre 3 Lieblings-Ausflüge aus. Je höher gewählt, desto mehr Punkte gibt es!
-                    </p>
- 
-                    <div id="peopleContainer"></div>
-                </div>
+                <div id="routeContainer"></div>
                 <div class="button-group">
                     <button class="btn-secondary btn-small" onclick="prevStep()">← Zurück</button>
                     <button class="btn-primary" onclick="nextStep()">Weiter →</button>
                 </div>
             </div>
  
-            <!-- Step 3: Date Selection -->
+            <!-- Step 3: Date Selection (Monat → Tage) -->
             <div class="step" data-step="2">
-                <div class="calendar-section">
-                    <h3>📅 Wählt die besten Termine</h3>
-                    <p style="color: #666; margin-bottom: 25px; font-size: 0.95em;">
-                        Jede Person markiert die Tage, an denen sie Zeit hat.
-                    </p>
- 
-                    <div id="datesContainer"></div>
-                </div>
+                <div id="dateContainer"></div>
                 <div class="button-group">
                     <button class="btn-secondary btn-small" onclick="prevStep()">← Zurück</button>
                     <button class="btn-primary" onclick="nextStep()">Zu den Ergebnissen →</button>
@@ -711,13 +660,13 @@
                 <div class="results-container">
                     <h2>🏆 Die Ergebnisse sind da!</h2>
                     
-                    <div class="results-ranking">
-                        <h3 style="color: var(--accent); margin-bottom: 20px;">Top Ausflüge:</h3>
+                    <div class="results-section">
+                        <h3>Top Ausflüge:</h3>
                         <div id="resultsRanking"></div>
                     </div>
  
-                    <div class="date-ranking">
-                        <h3>📅 Verfügbare Termine:</h3>
+                    <div class="results-section">
+                        <h3>📅 Beste Termine:</h3>
                         <div id="dateResults"></div>
                     </div>
  
@@ -727,7 +676,7 @@
                         </p>
                         <p style="color: #666; font-size: 0.9em; line-height: 1.6;">
                             1. Den #1 Ausflug auswählen<br>
-                            2. Den besten gemeinsamen Termin festlegen<br>
+                            2. Den besten Termin festlegen<br>
                             3. Das Abenteuer wird Realität! 🚀
                         </p>
                     </div>
@@ -741,118 +690,186 @@
     </div>
  
     <script>
-        // Configuration
+        // Alle verfügbaren Ausflüge (erweiterbar)
+        const allRoutes = [
+            { name: 'Wanderung Appenzell Alps', desc: 'Wunderschöne Berglandschaft', region: 'Ostschweiz' },
+            { name: 'Rhine Falls', desc: 'Europas grösster Wasserfall', region: 'Zürich' },
+            { name: 'Jungfraujoch', desc: 'Top of Europe - 3454m', region: 'Berner Oberland' },
+            { name: 'Luzerner Seenfahrt', desc: 'Entspannungsfahrt mit Schiff', region: 'Zentralschweiz' },
+            { name: 'Gorges du Trient', desc: 'Abenteuer-Klettersteig', region: 'Wallis' },
+            { name: 'Axalp-Panorama', desc: 'Atemberaubender Aussichtspunkt', region: 'Berner Oberland' },
+            { name: 'Rigi Kulm', desc: 'Klassische Bergbahn-Wanderung', region: 'Zentralschweiz' },
+            { name: 'Oeschinen Lake', desc: 'Kristallklares Bergwasser', region: 'Berner Oberland' },
+            { name: 'Säntis', desc: 'Mit nostalgischer Appenzell-Bahn', region: 'Ostschweiz' },
+            { name: 'Creux du Van', desc: 'Spektakuläre Felswände', region: 'Jura' },
+            { name: 'Mont-Blanc Umrundung', desc: 'Mehrtagesausflug möglich', region: 'Wallis' },
+            { name: 'Blausee', desc: 'Durchsichtiges Bergsee-Wunder', region: 'Interlaken' },
+            { name: 'Lauterbrunnen Tal', desc: 'Wasserfälle & Wanderungen', region: 'Berner Oberland' },
+            { name: 'Schaffhausen Altstadt', desc: 'Mittelalterlicher Charme', region: 'Schaffhausen' },
+            { name: 'Pizol Panorama', desc: 'Aussichtsreiche Bergwanderung', region: 'St. Gallen' },
+        ];
+ 
         const config = {
-            people: ['Chayenne', 'Joel', 'Mirjam'],
-            sampleTrips: [
-                { name: 'Wanderung Appenzell', description: 'Wunderschöne Berglandschaft' },
-                { name: 'Rhine Falls', description: 'Europas grösster Wasserfall' },
-                { name: 'Jungfraujoch', description: 'Top of Europe' },
-                { name: 'Luzerner Seenfahrt', description: 'Entspannungsfahrt' },
-                { name: 'Gorges du Trient', description: 'Abenteuer-Klettersteig' },
-                { name: 'Axalp-Panorama', description: 'Atemberaubender Aussichtspunkt' },
-                { name: 'Rigi Kulm', description: 'Klassische Bergbahn-Wanderung' },
-                { name: 'Oeschinen Lake', description: 'Bergkristallklares Wasser' },
-                { name: 'Säntis', description: 'Mit Appenzell-Bahn' },
-                { name: 'Creux du Van', description: 'Spektakuläre Felswände' }
-            ],
-            dates: generateDates(14),
+            people: ['Person 1', 'Person 2', 'Person 3'],
+            routes: allRoutes,
         };
  
         let currentStep = 0;
+        let currentPersonRoute = 0;
+        let selectedMonth = null;
+        let currentPersonDate = 0;
+ 
         let data = {
             selections: {},
             dates: {},
         };
  
-        // Initialize
+        // ===== INITIALIZATION =====
         function init() {
             config.people.forEach(person => {
                 data.selections[person] = [];
                 data.dates[person] = [];
             });
             renderStep();
-            renderPeople();
+            renderRoutes();
+            renderDates();
+            updateProgress();
+        }
+ 
+        // ===== ROUTE SELECTION (NACHEINANDER PRO PERSON) =====
+        function renderRoutes() {
+            const container = document.getElementById('routeContainer');
+            
+            if (currentPersonRoute >= config.people.length) {
+                container.innerHTML = '<p style="text-align: center; padding: 20px; color: #667eea; font-weight: bold;">✓ Alle Personen haben ihre Top 3 gewählt!</p>';
+                return;
+            }
+ 
+            const person = config.people[currentPersonRoute];
+            const selected = data.selections[person] || [];
+ 
+            let html = `
+                <div class="person-section">
+                    <h3>👤 ${person}</h3>
+                    <div class="route-intro">
+                        <h4>Wähle deine Top 3 Ausflüge</h4>
+                        <p>Klick auf deine 3 liebsten Ausflüge. Du kannst sie noch ändern!</p>
+                        <p style="font-size: 0.85em; margin-top: 10px; font-weight: bold;">
+                            (${selected.length} von 3 ausgewählt)
+                        </p>
+                    </div>
+                    <div class="route-list">
+                        ${config.routes.map((route, idx) => `
+                            <div class="route-item ${selected.includes(idx) ? 'selected' : ''}" 
+                                 onclick="toggleRoute(${idx})">
+                                <div class="route-checkbox">
+                                    ${selected.includes(idx) ? '✓' : ''}
+                                </div>
+                                <div class="route-info">
+                                    <span class="route-name">${route.name}</span>
+                                    <span class="route-desc">${route.desc} • ${route.region}</span>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+ 
+            container.innerHTML = html;
+        }
+ 
+        function toggleRoute(routeIdx) {
+            const person = config.people[currentPersonRoute];
+            const selected = data.selections[person];
+ 
+            if (selected.includes(routeIdx)) {
+                data.selections[person] = selected.filter(i => i !== routeIdx);
+            } else if (selected.length < 3) {
+                data.selections[person].push(routeIdx);
+            }
+            renderRoutes();
+        }
+ 
+        // ===== DATE SELECTION (MONAT → TAGE) =====
+        function renderDates() {
+            const container = document.getElementById('dateContainer');
+            
+            if (currentPersonDate >= config.people.length) {
+                container.innerHTML = '<p style="text-align: center; padding: 20px; color: #667eea; font-weight: bold;">✓ Alle Personen haben ihre Termine gewählt!</p>';
+                return;
+            }
+ 
+            const person = config.people[currentPersonDate];
+ 
+            // Wenn kein Monat gewählt, zeige Monat-Auswahl
+            if (selectedMonth === null) {
+                const months = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 
+                               'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+                
+                let html = `
+                    <div class="calendar-container">
+                        <h4>👤 ${person} - Wähle einen Monat</h4>
+                        <div class="month-selector">
+                            ${months.map((month, idx) => `
+                                <button class="month-btn" onclick="selectMonth(${idx})">
+                                    ${month}
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                container.innerHTML = html;
+            } else {
+                // Zeige Tage-Auswahl für gewählten Monat
+                const days = getDaysInMonth(selectedMonth);
+                const months = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 
+                               'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+                
+                let html = `
+                    <div class="calendar-container">
+                        <h4>👤 ${person} - Wähle Tage im ${months[selectedMonth]}</h4>
+                        <div style="margin-bottom: 15px;">
+                            <button class="month-btn" onclick="selectedMonth = null; renderDates();" style="width: 100%;">
+                                ← Zurück zum Monat
+                            </button>
+                        </div>
+                        <div class="day-grid">
+                            ${Array.from({ length: days }, (_, i) => {
+                                const day = i + 1;
+                                const dateStr = `2024-${String(selectedMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                                const dayName = new Date(2024, selectedMonth, day).toLocaleDateString('de-CH', { weekday: 'short' });
+                                const isSelected = data.dates[person] && data.dates[person].includes(dateStr);
+                                
+                                return `
+                                    <button class="day-btn ${isSelected ? 'selected' : ''}" onclick="toggleDate('${dateStr}')">
+                                        <span class="day-label">${dayName}</span>
+                                        <span class="day-number">${day}</span>
+                                    </button>
+                                `;
+                            }).join('')}
+                        </div>
+                        <p style="margin-top: 15px; font-size: 0.9em; color: #666; text-align: center; font-weight: bold;">
+                            ${data.dates[person] ? data.dates[person].length : 0} Tage ausgewählt
+                        </p>
+                    </div>
+                `;
+                container.innerHTML = html;
+            }
+        }
+ 
+        function getDaysInMonth(month) {
+            return new Date(2024, month + 1, 0).getDate();
+        }
+ 
+        function selectMonth(monthIdx) {
+            selectedMonth = monthIdx;
             renderDates();
         }
  
-        // Generate next 60 days
-        function generateDates(days) {
-            const result = [];
-            const today = new Date();
-            for (let i = 1; i <= days; i++) {
-                const date = new Date(today);
-                date.setDate(today.getDate() + i);
-                result.push(date);
-            }
-            return result;
-        }
+        function toggleDate(dateStr) {
+            const person = config.people[currentPersonDate];
+            if (!data.dates[person]) data.dates[person] = [];
  
-        // Render People Selection
-        function renderPeople() {
-            const container = document.getElementById('peopleContainer');
-            container.innerHTML = config.people.map(person => `
-                <div class="person-section">
-                    <h4>👤 ${person}</h4>
-                    <div class="trip-list">
-                        ${config.sampleTrips.map((trip, idx) => `
-                            <div class="trip-option ${data.selections[person]?.includes(idx) ? 'selected' : ''}" 
-                                 onclick="selectTrip('${person}', ${idx})">
-                                <div class="trip-checkbox">
-                                    ${data.selections[person]?.includes(idx) ? '✓' : ''}
-                                </div>
-                                <div class="trip-text">
-                                    <strong>${trip.name}</strong>
-                                    <small>${trip.description}</small>
-                                </div>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-            `).join('');
-        }
- 
-        // Select Trip
-        function selectTrip(person, tripIndex) {
-            if (!data.selections[person].includes(tripIndex)) {
-                if (data.selections[person].length < 3) {
-                    data.selections[person].push(tripIndex);
-                }
-            } else {
-                data.selections[person] = data.selections[person].filter(i => i !== tripIndex);
-            }
-            renderPeople();
-        }
- 
-        // Render Dates
-        function renderDates() {
-            const container = document.getElementById('datesContainer');
-            const dateOptions = config.dates.map(date => {
-                const dateStr = date.toISOString().split('T')[0];
-                const day = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'][date.getDay()];
-                const dateNum = date.getDate();
-                return { dateStr, day, dateNum, date };
-            });
- 
-            const people = config.people;
-            container.innerHTML = people.map(person => `
-                <div class="person-section">
-                    <h4>👤 ${person}</h4>
-                    <div class="date-grid">
-                        ${dateOptions.map(({ dateStr, day, dateNum }) => `
-                            <div class="date-option ${data.dates[person]?.includes(dateStr) ? 'selected' : ''}"
-                                 onclick="toggleDate('${person}', '${dateStr}')">
-                                <span class="day">${day}</span>
-                                <span class="date">${dateNum}</span>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-            `).join('');
-        }
- 
-        // Toggle Date
-        function toggleDate(person, dateStr) {
             if (data.dates[person].includes(dateStr)) {
                 data.dates[person] = data.dates[person].filter(d => d !== dateStr);
             } else {
@@ -861,63 +878,117 @@
             renderDates();
         }
  
-        // Calculate Results
-        function calculateResults() {
-            // Trip ranking
-            const tripVotes = {};
-            config.sampleTrips.forEach((_, idx) => {
-                tripVotes[idx] = 0;
+        // ===== NAVIGATION =====
+        function nextStep() {
+            // Validierung für Route-Step
+            if (currentStep === 1) {
+                const person = config.people[currentPersonRoute];
+                if (data.selections[person].length === 0) {
+                    alert(`Bitte wähle mindestens einen Ausflug für ${person}!`);
+                    return;
+                }
+ 
+                currentPersonRoute++;
+                if (currentPersonRoute < config.people.length) {
+                    renderRoutes();
+                    return;
+                }
+            }
+ 
+            // Validierung für Date-Step
+            if (currentStep === 2) {
+                const person = config.people[currentPersonDate];
+                if (!data.dates[person] || data.dates[person].length === 0) {
+                    alert(`Bitte wähle mindestens einen Termin für ${person}!`);
+                    return;
+                }
+ 
+                currentPersonDate++;
+                if (currentPersonDate < config.people.length) {
+                    selectedMonth = null;
+                    renderDates();
+                    return;
+                }
+            }
+ 
+            if (currentStep < 3) {
+                currentStep++;
+                renderStep();
+            }
+            if (currentStep === 3) {
+                renderResults();
+            }
+            updateProgress();
+        }
+ 
+        function prevStep() {
+            if (currentStep > 0) {
+                if (currentStep === 1 && currentPersonRoute > 0) {
+                    currentPersonRoute--;
+                    renderRoutes();
+                } else if (currentStep === 2 && currentPersonDate > 0) {
+                    currentPersonDate--;
+                    selectedMonth = null;
+                    renderDates();
+                } else if (currentStep > 1) {
+                    currentStep--;
+                    renderStep();
+                }
+            }
+            updateProgress();
+        }
+ 
+        function renderStep() {
+            document.querySelectorAll('.step').forEach((el, idx) => {
+                el.classList.toggle('active', idx === currentStep);
+            });
+        }
+ 
+        // ===== RESULTS =====
+        function renderResults() {
+            // Route Ranking
+            const routeVotes = {};
+            config.routes.forEach((_, idx) => {
+                routeVotes[idx] = 0;
             });
  
             config.people.forEach(person => {
                 const selections = data.selections[person];
-                selections.forEach((tripIdx, position) => {
-                    // 3 Punkte für Platz 1, 2 für Platz 2, 1 für Platz 3
-                    tripVotes[tripIdx] += (3 - position);
+                selections.forEach((routeIdx, position) => {
+                    routeVotes[routeIdx] += (3 - position);
                 });
             });
  
-            const tripRanking = Object.entries(tripVotes)
+            const routeRanking = Object.entries(routeVotes)
                 .map(([idx, votes]) => ({
-                    name: config.sampleTrips[parseInt(idx)].name,
+                    name: config.routes[parseInt(idx)].name,
                     votes,
                     idx: parseInt(idx)
                 }))
                 .sort((a, b) => b.votes - a.votes)
                 .filter(item => item.votes > 0);
  
-            // Date ranking
+            // Date Ranking
             const dateVotes = {};
             config.people.forEach(person => {
-                data.dates[person].forEach(date => {
-                    dateVotes[date] = (dateVotes[date] || 0) + 1;
-                });
+                if (data.dates[person]) {
+                    data.dates[person].forEach(date => {
+                        dateVotes[date] = (dateVotes[date] || 0) + 1;
+                    });
+                }
             });
  
             const dateRanking = Object.entries(dateVotes)
                 .map(([date, votes]) => ({ date, votes }))
                 .sort((a, b) => b.votes - a.votes);
  
-            return { tripRanking, dateRanking };
-        }
- 
-        // Render Results
-        function renderResults() {
-            const { tripRanking, dateRanking } = calculateResults();
-            const maxVotes = tripRanking[0]?.votes || 1;
- 
-            // Trip Results
-            const tripHTML = tripRanking.map((item, idx) => {
+            // Route HTML
+            const maxVotes = routeRanking[0]?.votes || 1;
+            const routeHTML = routeRanking.map((item, idx) => {
                 const percentage = (item.votes / maxVotes) * 100;
-                const medals = ['🥇', '🥈', '🥉'];
-                const medal = medals[idx] || '•';
-                const positionClass = idx === 0 ? 'first' : idx === 1 ? 'second' : 'third';
- 
                 return `
                     <div class="ranking-item">
-                        <div class="ranking-position ${positionClass}">
-                            ${idx + 1}
-                        </div>
+                        <div class="ranking-position">${idx + 1}</div>
                         <div class="ranking-info">
                             <div class="ranking-title">${item.name}</div>
                             <div class="ranking-votes">${item.votes} Punkte</div>
@@ -929,82 +1000,70 @@
                 `;
             }).join('');
  
-            document.getElementById('resultsRanking').innerHTML = tripHTML || '<p>Keine Votes</p>';
+            document.getElementById('resultsRanking').innerHTML = routeHTML || '<p>Keine Votes</p>';
  
-            // Date Results
+            // Date HTML
             const dateHTML = dateRanking.slice(0, 5).map(item => {
-                const date = new Date(item.date);
-                const day = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'][date.getDay()];
-                const formatted = `${day}, ${date.getDate()}.${date.getMonth() + 1}.`;
- 
+                const date = new Date(item.date + 'T12:00:00');
+                const formatted = date.toLocaleDateString('de-CH', { weekday: 'short', year: 'numeric', month: '2-digit', day: '2-digit' });
                 return `
-                    <div class="date-item">
-                        <span class="date-item-date">${formatted}</span>
-                        <span class="date-item-votes">${item.votes} ${item.votes === 1 ? 'Person' : 'Personen'}</span>
+                    <div class="ranking-item">
+                        <div class="ranking-position">${item.votes}</div>
+                        <div class="ranking-info" style="text-align: left;">
+                            <div class="ranking-title">${formatted}</div>
+                            <div class="ranking-votes">${item.votes} ${item.votes === 1 ? 'Person' : 'Personen'}</div>
+                        </div>
                     </div>
                 `;
             }).join('');
  
-            document.getElementById('dateResults').innerHTML = dateHTML || '<p>Keine Termine verfügbar</p>';
+            document.getElementById('dateResults').innerHTML = dateHTML || '<p>Keine Termine</p>';
         }
  
-        // Navigation
-        function nextStep() {
-            if (currentStep < 3) {
-                currentStep++;
-                renderStep();
-            }
-            if (currentStep === 3) {
-                renderResults();
-            }
-        }
+        function updateProgress() {
+            const progress = ((currentStep) / 3) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
  
-        function prevStep() {
-            if (currentStep > 0) {
-                currentStep--;
-                renderStep();
-            }
-        }
- 
-        function renderStep() {
-            document.querySelectorAll('.step').forEach((el, idx) => {
-                el.classList.toggle('active', idx === currentStep);
-            });
- 
-            document.querySelectorAll('.step-indicator').forEach((el, idx) => {
+            document.querySelectorAll('.step-dot').forEach((el, idx) => {
                 el.classList.toggle('active', idx === currentStep);
                 el.classList.toggle('completed', idx < currentStep);
             });
         }
  
-        // Reset
         function resetAll() {
             currentStep = 0;
+            currentPersonRoute = 0;
+            currentPersonDate = 0;
+            selectedMonth = null;
             config.people.forEach(person => {
                 data.selections[person] = [];
                 data.dates[person] = [];
             });
             renderStep();
-            renderPeople();
+            renderRoutes();
             renderDates();
+            updateProgress();
         }
  
-        // Share
         function shareResults() {
-            const { tripRanking, dateRanking } = calculateResults();
-            const topTrip = tripRanking[0]?.name || 'Noch keine Wahl';
-            const topDate = dateRanking[0]?.date || 'Noch kein Termin';
+            const topRoute = Object.entries(data.selections)
+                .flatMap(([_, routes]) => routes)
+                .reduce((acc, idx) => {
+                    acc[idx] = (acc[idx] || 0) + 1;
+                    return acc;
+                }, {});
             
-            const text = `Unser Geburtstagsabenteuer: ${topTrip} am ${topDate}! 🎉`;
+            const bestRoute = Object.entries(topRoute).sort((a, b) => b[1] - a[1])[0];
+            const text = `Unser Familienausflug: ${config.routes[bestRoute[0]].name}! 🏔️ ✈️ 🗺️`;
             
             if (navigator.share) {
-                navigator.share({ title: 'Geburtstagsausflug', text });
+                navigator.share({ title: 'Familienausflug', text });
             } else {
                 alert(text);
             }
         }
  
-        // Initialize on load
+        // Initialize
         window.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
