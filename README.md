@@ -635,7 +635,7 @@
         <!-- Header -->
         <div class="header">
             <h1>🎉 Geburtstagsabenteuer</h1>
-            <p>Findet gemeinsam euren perfekten Ausflug!</p>
+            <p>Wir suchen gemeinsam den perfekten Ausflug!</p>
         </div>
  
         <!-- Steps Navigation -->
@@ -743,7 +743,7 @@
     <script>
         // Configuration
         const config = {
-            people: ['Person 1', 'Person 2', 'Person 3'],
+            people: ['Chayenne', 'Joel', 'Mirjam'],
             sampleTrips: [
                 { name: 'Wanderung Appenzell', description: 'Wunderschöne Berglandschaft' },
                 { name: 'Rhine Falls', description: 'Europas grösster Wasserfall' },
@@ -776,7 +776,7 @@
             renderDates();
         }
  
-        // Generate next 14 days
+        // Generate next 60 days
         function generateDates(days) {
             const result = [];
             const today = new Date();
