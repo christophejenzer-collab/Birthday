@@ -11,6 +11,13 @@
             box-sizing: border-box;
         }
  
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+ 
         :root {
             --primary: #667eea;
             --light-bg: #F3F4F9;
@@ -22,10 +29,34 @@
  
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #667eea 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             color: #333;
             padding: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+ 
+        /* Animated background elements */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 107, 157, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(102, 201, 160, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(255, 201, 61, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+            animation: float 20s ease-in-out infinite;
+            z-index: 0;
+        }
+ 
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
  
         .container {
@@ -38,26 +69,45 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            position: relative;
+            z-index: 1;
         }
  
         /* Header */
         .header {
-            background: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             padding: 25px 20px;
             text-align: center;
             animation: slideDown 0.6s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+ 
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            pointer-events: none;
         }
  
         .header h1 {
             font-size: 2.2em;
             margin-bottom: 8px;
             font-weight: 700;
+            position: relative;
+            z-index: 2;
         }
  
         .header p {
             font-size: 1em;
             opacity: 0.95;
+            position: relative;
+            z-index: 2;
         }
  
         /* Progress Bar */
@@ -187,6 +237,7 @@
             padding: 15px;
             margin-bottom: 20px;
             text-align: center;
+            animation: slideDown 0.5s ease-out;
         }
  
         .person-highlight h3 {
@@ -299,105 +350,6 @@
             color: #999;
         }
  
-        /* Date Selection */
-        .calendar-container {
-            background: var(--light-bg);
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 15px;
-        }
- 
-        .calendar-container h4 {
-            color: #667eea;
-            margin-bottom: 12px;
-            font-size: 1em;
-        }
- 
-        .year-month-selector {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 15px;
-        }
- 
-        .year-selector,
-        .month-selector {
-            flex: 1;
-        }
- 
-        .year-selector label,
-        .month-selector label {
-            display: block;
-            color: #667eea;
-            font-size: 0.85em;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
- 
-        .year-selector select,
-        .month-selector select {
-            width: 100%;
-            padding: 10px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            background: white;
-            color: #333;
-            font-size: 0.9em;
-            cursor: pointer;
-            transition: var(--transition);
-        }
- 
-        .year-selector select:hover,
-        .month-selector select:hover,
-        .year-selector select:focus,
-        .month-selector select:focus {
-            border-color: #667eea;
-            outline: none;
-        }
- 
-        .day-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
-            gap: 6px;
-        }
- 
-        .day-btn {
-            background: white;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 8px 4px;
-            text-align: center;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 0.75em;
-            min-height: 45px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
- 
-        .day-btn:hover {
-            border-color: #667eea;
-            transform: scale(1.05);
-        }
- 
-        .day-btn.selected {
-            background: #667eea;
-            color: white;
-            border-color: #667eea;
-        }
- 
-        .day-label {
-            font-weight: 600;
-            font-size: 0.65em;
-            color: #666;
-        }
- 
-        .day-number {
-            font-weight: bold;
-            font-size: 0.9em;
-        }
- 
         /* Results */
         .results-container {
             text-align: center;
@@ -477,6 +429,37 @@
             background: #667eea;
             transition: width 0.5s ease-out;
             border-radius: 2px;
+        }
+ 
+        /* Final Message */
+        .final-message {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(6, 214, 160, 0.15));
+            border: 2px solid #667eea;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+            animation: slideUp 0.6s ease-out;
+        }
+ 
+        .final-message h3 {
+            color: #667eea;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+ 
+        .final-message p {
+            color: #333;
+            font-size: 1em;
+            line-height: 1.6;
+            margin: 8px 0;
+        }
+ 
+        .final-message .names {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.1em;
+            margin: 15px 0;
         }
  
         /* Buttons */
@@ -584,10 +567,6 @@
             button {
                 padding: 11px 20px;
                 font-size: 0.9em;
-            }
- 
-            .day-grid {
-                grid-template-columns: repeat(auto-fit, minmax(38px, 1fr));
             }
  
             .route-list {
@@ -707,52 +686,6 @@
                 font-size: 0.75em;
             }
  
-            .calendar-container {
-                padding: 12px;
-                margin-bottom: 12px;
-            }
- 
-            .calendar-container h4 {
-                font-size: 0.95em;
-                margin-bottom: 10px;
-            }
- 
-            .year-month-selector {
-                flex-direction: column;
-                gap: 10px;
-            }
- 
-            .year-selector label,
-            .month-selector label {
-                font-size: 0.8em;
-                margin-bottom: 5px;
-            }
- 
-            .year-selector select,
-            .month-selector select {
-                padding: 9px;
-                font-size: 0.85em;
-            }
- 
-            .day-grid {
-                grid-template-columns: repeat(auto-fit, minmax(36px, 1fr));
-                gap: 5px;
-            }
- 
-            .day-btn {
-                padding: 6px 3px;
-                font-size: 0.7em;
-                min-height: 42px;
-            }
- 
-            .day-label {
-                font-size: 0.6em;
-            }
- 
-            .day-number {
-                font-size: 0.85em;
-            }
- 
             .results-container h2 {
                 font-size: 1.2em;
                 margin-bottom: 15px;
@@ -781,6 +714,24 @@
  
             .ranking-votes {
                 font-size: 0.75em;
+            }
+ 
+            .final-message {
+                padding: 15px;
+                margin: 15px 0;
+            }
+ 
+            .final-message h3 {
+                font-size: 1.1em;
+            }
+ 
+            .final-message p {
+                font-size: 0.9em;
+            }
+ 
+            .final-message .names {
+                font-size: 1em;
+                margin: 12px 0;
             }
  
             .button-group {
@@ -815,7 +766,6 @@
                 <div class="step-dot active" data-step="0">1</div>
                 <div class="step-dot" data-step="1">2</div>
                 <div class="step-dot" data-step="2">3</div>
-                <div class="step-dot" data-step="3">4</div>
             </div>
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill"></div>
@@ -842,7 +792,7 @@
                     </div>
  
                     <p style="margin-top: 15px; font-size: 0.85em; color: #999;">
-                        Dann wählt jeder seine Top 3 Lieblings-Ausflüge aus und wir bestimmen gemeinsam den besten Termin!
+                        Dann wählt jeder seine Top 3 Lieblings-Ausflüge aus!
                     </p>
                 </div>
                 <div class="button-group">
@@ -860,18 +810,8 @@
                 </div>
             </div>
  
-            <!-- Step 3: Date Selection -->
+            <!-- Step 3: Results -->
             <div class="step" data-step="2">
-                <div id="personHighlightDate" class="person-highlight"></div>
-                <div id="dateContainer"></div>
-                <div class="button-group">
-                    <button class="btn-secondary btn-small" onclick="prevStep()">← Zurück</button>
-                    <button class="btn-primary" onclick="nextStep()">Zu den Ergebnissen →</button>
-                </div>
-            </div>
- 
-            <!-- Step 4: Results -->
-            <div class="step" data-step="3">
                 <div class="results-container">
                     <h2>🏆 Die Ergebnisse sind da!</h2>
                     
@@ -880,9 +820,16 @@
                         <div id="resultsRanking"></div>
                     </div>
  
-                    <div class="results-section">
-                        <h3>📅 Beste Termine:</h3>
-                        <div id="dateResults"></div>
+                    <div class="final-message">
+                        <h3>📅 Jetzt geht's los!</h3>
+                        <p>Glückwunsch! Die Abstimmung ist fertig.</p>
+                        <p>Der Gewinner ist die Top-Wahl aller!</p>
+                        <div class="names">
+                            Chayenne • Joel • Mirjam
+                        </div>
+                        <p style="margin-top: 15px; font-size: 0.95em;">
+                            Terminabsprache folgt im persönlichen Gespräch 💬
+                        </p>
                     </div>
  
                     <div style="margin-top: 20px; padding: 12px; background: var(--light-bg); border-radius: 10px;">
@@ -890,8 +837,8 @@
                             💡 <strong>Nächste Schritte:</strong>
                         </p>
                         <p style="color: #666; font-size: 0.85em; line-height: 1.5;">
-                            1. Den #1 Ausflug auswählen<br>
-                            2. Den besten Termin festlegen<br>
+                            1. Den #1 Ausflug absprechen<br>
+                            2. Den Termin gemeinsam festlegen<br>
                             3. Das Abenteuer wird Realität! 🚀
                         </p>
                     </div>
@@ -925,30 +872,24 @@
         ];
  
         const config = {
-            people: ['👧 Tochter', '👦 Sohn', '👩 Mutter'],
+            people: ['👧 Chayenne', '👦 Joel', '👩 Mirjam'],
             routes: allRoutes,
         };
  
         let currentStep = 0;
         let currentPersonRoute = 0;
-        let currentPersonDate = 0;
-        let selectedYear = 2026;
-        let selectedMonth = null;
  
         let data = {
             selections: {},
-            dates: {},
         };
  
         // Initialisierung
         function init() {
             config.people.forEach(person => {
                 data.selections[person] = [];
-                data.dates[person] = [];
             });
             renderStep();
             renderRoutes();
-            renderDates();
             updateProgress();
         }
  
@@ -1013,114 +954,6 @@
             renderRoutes();
         }
  
-        // Date Selection
-        function renderDates() {
-            const container = document.getElementById('dateContainer');
-            const highlight = document.getElementById('personHighlightDate');
-            
-            if (currentPersonDate >= config.people.length) {
-                container.innerHTML = '<p style="text-align: center; padding: 15px; color: #667eea; font-weight: bold;">✓ Alle Personen fertig!</p>';
-                highlight.innerHTML = '';
-                return;
-            }
- 
-            const person = config.people[currentPersonDate];
- 
-            // Highlight
-            highlight.innerHTML = `
-                <h3>${person}</h3>
-                <p>Dein Turn! 📱 Gib das Handy weiter, wenn du fertig bist</p>
-            `;
- 
-            if (selectedMonth === null) {
-                // Jahr und Monat wählen
-                const months = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 
-                               'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
-                
-                const currentYear = 2026;
-                const years = [2026, 2027, 2028];
-                
-                let html = `
-                    <div class="calendar-container">
-                        <h4>📅 Jahr und Monat wählen</h4>
-                        <div class="year-month-selector">
-                            <div class="year-selector">
-                                <label>Jahr</label>
-                                <select onchange="selectedYear = parseInt(this.value); renderDates();">
-                                    ${years.map(year => `
-                                        <option value="${year}" ${year === selectedYear ? 'selected' : ''}>${year}</option>
-                                    `).join('')}
-                                </select>
-                            </div>
-                            <div class="month-selector">
-                                <label>Monat</label>
-                                <select onchange="selectMonth(parseInt(this.value)); renderDates();">
-                                    <option value="">-- Monat wählen --</option>
-                                    ${months.map((month, idx) => `
-                                        <option value="${idx}">${month}</option>
-                                    `).join('')}
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                container.innerHTML = html;
-            } else {
-                // Tage anzeigen
-                const days = getDaysInMonth(selectedMonth, selectedYear);
-                const months = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 
-                               'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
-                
-                let html = `
-                    <div class="calendar-container">
-                        <h4>📅 ${months[selectedMonth]} ${selectedYear}</h4>
-                        <button class="month-btn" onclick="selectedMonth = null; renderDates();" style="width: 100%; margin-bottom: 12px;">
-                            ← Zurück zu Jahr/Monat
-                        </button>
-                        <div class="day-grid">
-                            ${Array.from({ length: days }, (_, i) => {
-                                const day = i + 1;
-                                const dateStr = `${selectedYear}-${String(selectedMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-                                const dayName = new Date(selectedYear, selectedMonth, day).toLocaleDateString('de-CH', { weekday: 'short' });
-                                const isSelected = data.dates[person] && data.dates[person].includes(dateStr);
-                                
-                                return `
-                                    <button class="day-btn ${isSelected ? 'selected' : ''}" onclick="toggleDate('${dateStr}')">
-                                        <span class="day-label">${dayName}</span>
-                                        <span class="day-number">${day}</span>
-                                    </button>
-                                `;
-                            }).join('')}
-                        </div>
-                        <p style="margin-top: 10px; font-size: 0.85em; color: #666; text-align: center; font-weight: bold;">
-                            ${data.dates[person] ? data.dates[person].length : 0} Tage ausgewählt
-                        </p>
-                    </div>
-                `;
-                container.innerHTML = html;
-            }
-        }
- 
-        function getDaysInMonth(month, year) {
-            return new Date(year, month + 1, 0).getDate();
-        }
- 
-        function selectMonth(monthIdx) {
-            selectedMonth = monthIdx;
-        }
- 
-        function toggleDate(dateStr) {
-            const person = config.people[currentPersonDate];
-            if (!data.dates[person]) data.dates[person] = [];
- 
-            if (data.dates[person].includes(dateStr)) {
-                data.dates[person] = data.dates[person].filter(d => d !== dateStr);
-            } else {
-                data.dates[person].push(dateStr);
-            }
-            renderDates();
-        }
- 
         // Navigation
         function nextStep() {
             if (currentStep === 1) {
@@ -1136,25 +969,11 @@
                 }
             }
  
-            if (currentStep === 2) {
-                const person = config.people[currentPersonDate];
-                if (!data.dates[person] || data.dates[person].length === 0) {
-                    alert(`Bitte wähle mindestens einen Termin!`);
-                    return;
-                }
-                currentPersonDate++;
-                if (currentPersonDate < config.people.length) {
-                    selectedMonth = null;
-                    renderDates();
-                    return;
-                }
-            }
- 
-            if (currentStep < 3) {
+            if (currentStep < 2) {
                 currentStep++;
                 renderStep();
             }
-            if (currentStep === 3) {
+            if (currentStep === 2) {
                 renderResults();
             }
             updateProgress();
@@ -1165,10 +984,6 @@
                 if (currentStep === 1 && currentPersonRoute > 0) {
                     currentPersonRoute--;
                     renderRoutes();
-                } else if (currentStep === 2 && currentPersonDate > 0) {
-                    currentPersonDate--;
-                    selectedMonth = null;
-                    renderDates();
                 } else if (currentStep > 1) {
                     currentStep--;
                     renderStep();
@@ -1206,19 +1021,6 @@
                 .sort((a, b) => b.votes - a.votes)
                 .filter(item => item.votes > 0);
  
-            const dateVotes = {};
-            config.people.forEach(person => {
-                if (data.dates[person]) {
-                    data.dates[person].forEach(date => {
-                        dateVotes[date] = (dateVotes[date] || 0) + 1;
-                    });
-                }
-            });
- 
-            const dateRanking = Object.entries(dateVotes)
-                .map(([date, votes]) => ({ date, votes }))
-                .sort((a, b) => b.votes - a.votes);
- 
             const maxVotes = routeRanking[0]?.votes || 1;
             const routeHTML = routeRanking.map((item, idx) => {
                 const percentage = (item.votes / maxVotes) * 100;
@@ -1237,26 +1039,10 @@
             }).join('');
  
             document.getElementById('resultsRanking').innerHTML = routeHTML || '<p>Keine Votes</p>';
- 
-            const dateHTML = dateRanking.slice(0, 5).map(item => {
-                const date = new Date(item.date + 'T12:00:00');
-                const formatted = date.toLocaleDateString('de-CH', { weekday: 'short', year: '2-digit', month: '2-digit', day: '2-digit' });
-                return `
-                    <div class="ranking-item">
-                        <div class="ranking-position">${item.votes}</div>
-                        <div class="ranking-info" style="text-align: left;">
-                            <div class="ranking-title">${formatted}</div>
-                            <div class="ranking-votes">${item.votes} ${item.votes === 1 ? 'Person' : 'Personen'}</div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
- 
-            document.getElementById('dateResults').innerHTML = dateHTML || '<p>Keine Termine</p>';
         }
  
         function updateProgress() {
-            const progress = ((currentStep) / 3) * 100;
+            const progress = ((currentStep) / 2) * 100;
             document.getElementById('progressFill').style.width = progress + '%';
  
             document.querySelectorAll('.step-dot').forEach((el, idx) => {
@@ -1268,16 +1054,11 @@
         function resetAll() {
             currentStep = 0;
             currentPersonRoute = 0;
-            currentPersonDate = 0;
-            selectedMonth = null;
-            selectedYear = 2026;
             config.people.forEach(person => {
                 data.selections[person] = [];
-                data.dates[person] = [];
             });
             renderStep();
             renderRoutes();
-            renderDates();
             updateProgress();
         }
  
