@@ -593,7 +593,7 @@
         <!-- Header -->
         <div class="header">
             <h1>🎉 Familienausflug</h1>
-            <p>Gemeinsam zum perfekten Abenteuer</p>
+            <p>Familie Jenzer sucht das perfekten Abenteuer</p>
         </div>
  
         <!-- Progress -->
@@ -616,7 +616,7 @@
                 <div class="welcome-content">
                     <div class="emoji">🎂</div>
                     <h2>Willkommen!</h2>
-                    <p>Wir haben eine besondere Überraschung für euch vorbereitet.</p>
+                    <p>Wir haben eine besondere Überraschung für Chayenne, Joel und Mirjam vorbereitet.</p>
                     <p>Gemeinsam wollen wir einen unvergesslichen Ausflug unternehmen!</p>
                     
                     <p style="margin-top: 30px; color: #666; font-size: 0.95em;">
@@ -710,7 +710,7 @@
         ];
  
         const config = {
-            people: ['Person 1', 'Person 2', 'Person 3'],
+            people: ['Chayenne', 'Joel', 'Mirjam'],
             routes: allRoutes,
         };
  
@@ -750,7 +750,7 @@
  
             let html = `
                 <div class="person-section">
-                    <h3>👤 ${person}</h3>
+                    <h3>👤 Hi ${person}</h3>
                     <div class="route-intro">
                         <h4>Wähle deine Top 3 Ausflüge</h4>
                         <p>Klick auf deine 3 liebsten Ausflüge. Du kannst sie noch ändern!</p>
