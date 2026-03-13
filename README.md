@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎉 Geburtstagsabenteuer - Wähle einen Ausflug!</title>
+    <title>Ausflug-Abstimmung</title>
     <style>
         * {
             margin: 0;
@@ -12,18 +12,18 @@
         }
  
         :root {
-            --primary: #FF6B9D;
-            --secondary: #FFC93D;
+            --primary: #667eea;
+            --secondary: #667eea;
             --accent: #1A1A2E;
             --success: #06D6A0;
-            --light-bg: #F8F9FA;
-            --card-shadow: 0 10px 40px rgba(255, 107, 157, 0.15);
+            --light-bg: #F3F4F9;
+            --card-shadow: 0 10px 40px rgba(102, 126, 234, 0.15);
             --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
  
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #667eea 0%, #667eea 100%);
             min-height: 100vh;
             color: #333;
             padding: 10px;
@@ -43,7 +43,7 @@
  
         /* Header */
         .header {
-            background: linear-gradient(135deg, var(--primary) 0%, #FF8FAB 100%);
+            background: #667eea;
             color: white;
             padding: 30px 20px;
             text-align: center;
@@ -89,9 +89,9 @@
         }
  
         .step-indicator.active {
-            background: var(--primary);
+            background: #667eea;
             color: white;
-            border-color: var(--primary);
+            border-color: #667eea;
             transform: scale(1.1);
         }
  
@@ -143,8 +143,8 @@
         }
  
         .link-box {
-            background: linear-gradient(135deg, rgba(255, 107, 157, 0.1), rgba(255, 201, 61, 0.1));
-            border: 2px solid var(--primary);
+            background: rgba(102, 126, 234, 0.08);
+            border: 2px solid #667eea;
             border-radius: 15px;
             padding: 15px;
             margin: 20px 0;
@@ -158,7 +158,7 @@
         }
  
         .link-box a {
-            color: var(--primary);
+            color: #667eea;
             text-decoration: none;
             font-weight: bold;
             word-break: break-all;
@@ -180,11 +180,11 @@
             border-radius: 15px;
             padding: 20px;
             margin-bottom: 25px;
-            border-left: 5px solid var(--primary);
+            border-left: 5px solid #667eea;
         }
  
         .person-section h4 {
-            color: var(--primary);
+            color: #667eea;
             margin-bottom: 15px;
             font-size: 1.15em;
         }
@@ -208,14 +208,14 @@
         }
  
         .trip-option:hover {
-            border-color: var(--primary);
-            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.1);
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
             transform: translateX(5px);
         }
  
         .trip-option.selected {
-            background: linear-gradient(135deg, rgba(255, 107, 157, 0.15), rgba(255, 201, 61, 0.1));
-            border-color: var(--primary);
+            background: rgba(102, 126, 234, 0.08);
+            border-color: #667eea;
             font-weight: 600;
         }
  
@@ -232,8 +232,8 @@
         }
  
         .trip-option.selected .trip-checkbox {
-            background: var(--primary);
-            border-color: var(--primary);
+            background: #667eea;
+            border-color: #667eea;
             color: white;
         }
  
@@ -257,7 +257,7 @@
         }
  
         .calendar-section h4 {
-            color: var(--primary);
+            color: #667eea;
             margin-bottom: 15px;
             font-size: 1.1em;
         }
@@ -281,14 +281,14 @@
         }
  
         .date-option:hover {
-            border-color: var(--primary);
+            border-color: #667eea;
             transform: scale(1.05);
         }
  
         .date-option.selected {
-            background: var(--primary);
+            background: #667eea;
             color: white;
-            border-color: var(--primary);
+            border-color: #667eea;
         }
  
         .date-option .day {
@@ -333,7 +333,7 @@
             width: 45px;
             height: 45px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: #667eea;
             color: white;
             display: flex;
             align-items: center;
@@ -344,16 +344,16 @@
         }
  
         .ranking-position.first {
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+            background: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
         }
  
         .ranking-position.second {
-            background: linear-gradient(135deg, #C0C0C0, #A9A9A9);
+            background: #667eea;
         }
  
         .ranking-position.third {
-            background: linear-gradient(135deg, #CD7F32, #8B4513);
+            background: #667eea;
         }
  
         .ranking-info {
@@ -383,7 +383,7 @@
  
         .vote-bar-fill {
             height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background: #667eea;
             transition: width 0.5s ease-out;
             border-radius: 3px;
         }
@@ -396,7 +396,7 @@
         }
  
         .date-ranking h3 {
-            color: var(--primary);
+            color: #667eea;
             margin-bottom: 15px;
         }
  
@@ -416,7 +416,7 @@
         }
  
         .date-item-votes {
-            background: var(--primary);
+            background: #667eea;
             color: white;
             padding: 4px 10px;
             border-radius: 20px;
@@ -446,7 +446,7 @@
         }
  
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary), #FF8FAB);
+            background: #667eea;
             color: white;
             flex: 1;
             min-width: 150px;
@@ -454,13 +454,13 @@
  
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 107, 157, 0.3);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
         }
  
         .btn-secondary {
             background: white;
-            color: var(--primary);
-            border: 2px solid var(--primary);
+            color: #667eea;
+            border: 2px solid #667eea;
             flex: 1;
             min-width: 150px;
         }
@@ -491,8 +491,8 @@
         input[type="text"]:focus,
         textarea:focus {
             outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(255, 107, 157, 0.1);
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
         }
  
         /* Animations */
@@ -615,8 +615,8 @@
  
         /* Loading */
         .spinner {
-            border: 4px solid rgba(255, 107, 157, 0.1);
-            border-top: 4px solid var(--primary);
+            border: 4px solid rgba(102, 126, 234, 0.1);
+            border-top: 4px solid #667eea;
             border-radius: 50%;
             width: 40px;
             height: 40px;
