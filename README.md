@@ -44,38 +44,38 @@
         .header {
             background: #667eea;
             color: white;
-            padding: 30px 20px;
+            padding: 25px 20px;
             text-align: center;
             animation: slideDown 0.6s ease-out;
         }
  
         .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
+            font-size: 2.2em;
+            margin-bottom: 8px;
             font-weight: 700;
         }
  
         .header p {
-            font-size: 1.1em;
+            font-size: 1em;
             opacity: 0.95;
         }
  
         /* Progress Bar */
         .progress-container {
             background: var(--light-bg);
-            padding: 20px;
+            padding: 15px;
         }
  
         .progress-steps {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             justify-content: space-between;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
  
         .step-dot {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             background: white;
             border: 2px solid #ddd;
@@ -85,7 +85,7 @@
             font-weight: bold;
             color: #999;
             transition: var(--transition);
-            cursor: pointer;
+            font-size: 0.8em;
         }
  
         .step-dot.active {
@@ -117,8 +117,9 @@
         /* Content */
         .content {
             flex: 1;
-            padding: 30px 20px;
+            padding: 25px 18px;
             animation: fadeIn 0.5s ease-out;
+            overflow-y: auto;
         }
  
         .step {
@@ -136,31 +137,31 @@
         }
  
         .emoji {
-            font-size: 4em;
-            margin: 20px 0;
+            font-size: 3.5em;
+            margin: 15px 0;
             animation: bounce 2s infinite;
         }
  
         .welcome-content h2 {
-            font-size: 1.8em;
+            font-size: 1.6em;
             color: var(--accent);
-            margin: 20px 0;
+            margin: 15px 0;
             font-weight: 600;
         }
  
         .welcome-content p {
-            font-size: 1.05em;
+            font-size: 0.98em;
             color: #666;
-            line-height: 1.6;
-            margin: 15px 0;
+            line-height: 1.5;
+            margin: 12px 0;
         }
  
         .link-box {
             background: rgba(102, 126, 234, 0.08);
             border: 2px solid #667eea;
-            border-radius: 15px;
-            padding: 15px;
-            margin: 20px 0;
+            border-radius: 12px;
+            padding: 12px;
+            margin: 15px 0;
             cursor: pointer;
             transition: var(--transition);
         }
@@ -175,68 +176,85 @@
             text-decoration: none;
             font-weight: bold;
             word-break: break-all;
+            font-size: 0.9em;
+        }
+ 
+        /* Person Highlight */
+        .person-highlight {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(102, 126, 234, 0.1));
+            border: 2px solid #667eea;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+ 
+        .person-highlight h3 {
+            color: #667eea;
+            font-size: 1.4em;
+            margin: 0;
+        }
+ 
+        .person-highlight p {
+            color: #666;
+            font-size: 0.9em;
+            margin: 8px 0 0 0;
         }
  
         /* Route Selection */
         .person-section {
             background: var(--light-bg);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 25px;
-            border-left: 5px solid #667eea;
-        }
- 
-        .person-section h3 {
-            color: #667eea;
+            border-radius: 12px;
+            padding: 15px;
             margin-bottom: 15px;
-            font-size: 1.3em;
+            border-left: 5px solid #667eea;
         }
  
         .route-intro {
             background: white;
             border: 2px solid #667eea;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
             text-align: center;
         }
  
         .route-intro h4 {
             color: #667eea;
-            font-size: 1.1em;
-            margin-bottom: 10px;
+            font-size: 1em;
+            margin-bottom: 8px;
         }
  
         .route-intro p {
             color: #666;
-            font-size: 0.95em;
-            line-height: 1.5;
+            font-size: 0.9em;
+            line-height: 1.4;
         }
  
         .route-list {
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            max-height: 400px;
+            gap: 10px;
+            max-height: 350px;
             overflow-y: auto;
         }
  
         .route-item {
             background: white;
             border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            padding: 15px;
+            border-radius: 10px;
+            padding: 12px;
             cursor: pointer;
             transition: var(--transition);
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
  
         .route-item:hover {
             border-color: #667eea;
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
-            transform: translateX(5px);
+            transform: translateX(3px);
         }
  
         .route-item.selected {
@@ -246,15 +264,16 @@
         }
  
         .route-checkbox {
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
             border: 2px solid #ddd;
-            border-radius: 6px;
+            border-radius: 5px;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: var(--transition);
             flex-shrink: 0;
+            font-size: 0.8em;
         }
  
         .route-item.selected .route-checkbox {
@@ -271,73 +290,90 @@
             font-weight: bold;
             color: var(--accent);
             display: block;
-            margin-bottom: 3px;
+            margin-bottom: 2px;
+            font-size: 0.95em;
         }
  
         .route-desc {
-            font-size: 0.85em;
+            font-size: 0.8em;
             color: #999;
         }
  
         /* Date Selection */
         .calendar-container {
             background: var(--light-bg);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 25px;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
         }
  
         .calendar-container h4 {
             color: #667eea;
+            margin-bottom: 12px;
+            font-size: 1em;
+        }
+ 
+        .year-month-selector {
+            display: flex;
+            gap: 8px;
             margin-bottom: 15px;
-            font-size: 1.1em;
         }
  
+        .year-selector,
         .month-selector {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-bottom: 25px;
+            flex: 1;
         }
  
-        .month-btn {
-            background: white;
+        .year-selector label,
+        .month-selector label {
+            display: block;
+            color: #667eea;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+ 
+        .year-selector select,
+        .month-selector select {
+            width: 100%;
+            padding: 10px;
             border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            padding: 12px;
+            border-radius: 8px;
+            background: white;
+            color: #333;
+            font-size: 0.9em;
             cursor: pointer;
             transition: var(--transition);
-            text-align: center;
-            font-weight: 500;
-            color: #666;
-            font-size: 0.9em;
         }
  
-        .month-btn:hover {
+        .year-selector select:hover,
+        .month-selector select:hover,
+        .year-selector select:focus,
+        .month-selector select:focus {
             border-color: #667eea;
-        }
- 
-        .month-btn.selected {
-            background: #667eea;
-            color: white;
-            border-color: #667eea;
+            outline: none;
         }
  
         .day-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
-            gap: 8px;
+            grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+            gap: 6px;
         }
  
         .day-btn {
             background: white;
             border: 2px solid #e0e0e0;
             border-radius: 8px;
-            padding: 10px 5px;
+            padding: 8px 4px;
             text-align: center;
             cursor: pointer;
             transition: var(--transition);
-            font-size: 0.85em;
+            font-size: 0.75em;
+            min-height: 45px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
  
         .day-btn:hover {
@@ -352,15 +388,14 @@
         }
  
         .day-label {
-            font-weight: bold;
-            display: block;
-            font-size: 0.7em;
+            font-weight: 600;
+            font-size: 0.65em;
             color: #666;
         }
  
         .day-number {
-            display: block;
             font-weight: bold;
+            font-size: 0.9em;
         }
  
         /* Results */
@@ -370,36 +405,36 @@
  
         .results-container h2 {
             color: var(--accent);
-            margin-bottom: 25px;
-            font-size: 1.6em;
+            margin-bottom: 20px;
+            font-size: 1.5em;
         }
  
         .results-section {
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
  
         .results-section h3 {
             color: #667eea;
-            margin-bottom: 15px;
-            font-size: 1.2em;
+            margin-bottom: 12px;
+            font-size: 1.05em;
             text-align: left;
         }
  
         .ranking-item {
             background: white;
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 12px;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
             animation: slideUp 0.5s ease-out;
         }
  
         .ranking-position {
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background: #667eea;
             color: white;
@@ -407,7 +442,7 @@
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            font-size: 1.3em;
+            font-size: 1.1em;
             flex-shrink: 0;
         }
  
@@ -419,20 +454,21 @@
         .ranking-title {
             font-weight: bold;
             color: var(--accent);
-            margin-bottom: 3px;
+            margin-bottom: 2px;
+            font-size: 0.9em;
         }
  
         .ranking-votes {
-            font-size: 0.9em;
+            font-size: 0.8em;
             color: #666;
         }
  
         .vote-bar {
             width: 100%;
-            height: 6px;
+            height: 5px;
             background: #e0e0e0;
-            border-radius: 3px;
-            margin-top: 8px;
+            border-radius: 2px;
+            margin-top: 6px;
             overflow: hidden;
         }
  
@@ -440,40 +476,40 @@
             height: 100%;
             background: #667eea;
             transition: width 0.5s ease-out;
-            border-radius: 3px;
+            border-radius: 2px;
         }
  
         /* Buttons */
         .button-group {
             display: flex;
-            gap: 10px;
-            margin-top: 30px;
+            gap: 8px;
+            margin-top: 20px;
             flex-wrap: wrap;
             justify-content: center;
         }
  
         button {
-            padding: 14px 30px;
+            padding: 12px 25px;
             border: none;
-            border-radius: 12px;
-            font-size: 1em;
+            border-radius: 10px;
+            font-size: 0.95em;
             font-weight: bold;
             cursor: pointer;
             transition: var(--transition);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
         }
  
         .btn-primary {
             background: #667eea;
             color: white;
             flex: 1;
-            min-width: 150px;
+            min-width: 140px;
         }
  
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
         }
  
         .btn-secondary {
@@ -481,7 +517,7 @@
             color: #667eea;
             border: 2px solid #667eea;
             flex: 1;
-            min-width: 150px;
+            min-width: 140px;
         }
  
         .btn-secondary:hover {
@@ -489,8 +525,8 @@
         }
  
         .btn-small {
-            padding: 10px 20px;
-            font-size: 0.9em;
+            padding: 10px 18px;
+            font-size: 0.85em;
             min-width: auto;
         }
  
@@ -509,7 +545,7 @@
         @keyframes slideUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(15px);
             }
             to {
                 opacity: 1;
@@ -524,13 +560,17 @@
  
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-8px); }
         }
  
-        /* Mobile */
+        /* Tablet */
         @media (max-width: 768px) {
+            .container {
+                max-width: 100%;
+            }
+ 
             .header h1 {
-                font-size: 2em;
+                font-size: 1.8em;
             }
  
             .content {
@@ -538,24 +578,24 @@
             }
  
             .button-group {
-                flex-direction: column;
+                gap: 6px;
             }
  
             button {
-                width: 100%;
-            }
- 
-            .month-selector {
-                grid-template-columns: repeat(2, 1fr);
-            }
- 
-            .step-dot {
-                width: 35px;
-                height: 35px;
+                padding: 11px 20px;
                 font-size: 0.9em;
+            }
+ 
+            .day-grid {
+                grid-template-columns: repeat(auto-fit, minmax(38px, 1fr));
+            }
+ 
+            .route-list {
+                max-height: 300px;
             }
         }
  
+        /* Mobile */
         @media (max-width: 480px) {
             body {
                 padding: 0;
@@ -563,27 +603,200 @@
  
             .container {
                 border-radius: 0;
-                min-height: 100vh;
+                max-width: 100%;
             }
  
             .header {
-                padding: 20px 15px;
+                padding: 18px 12px;
             }
  
             .header h1 {
-                font-size: 1.6em;
+                font-size: 1.4em;
+                margin-bottom: 4px;
             }
  
-            .month-selector {
-                grid-template-columns: repeat(2, 1fr);
+            .header p {
+                font-size: 0.85em;
             }
  
-            .day-grid {
-                grid-template-columns: repeat(3, 1fr);
+            .progress-container {
+                padding: 12px;
+            }
+ 
+            .progress-steps {
+                gap: 5px;
+                margin-bottom: 10px;
+            }
+ 
+            .step-dot {
+                width: 32px;
+                height: 32px;
+                font-size: 0.7em;
+            }
+ 
+            .content {
+                padding: 18px 12px;
+            }
+ 
+            .welcome-content h2 {
+                font-size: 1.3em;
+                margin: 12px 0;
+            }
+ 
+            .welcome-content p {
+                font-size: 0.9em;
+                margin: 10px 0;
+            }
+ 
+            .emoji {
+                font-size: 2.8em;
+                margin: 10px 0;
+            }
+ 
+            .person-highlight {
+                padding: 12px;
+                margin-bottom: 15px;
+            }
+ 
+            .person-highlight h3 {
+                font-size: 1.2em;
+            }
+ 
+            .person-highlight p {
+                font-size: 0.85em;
+            }
+ 
+            .link-box {
+                padding: 10px;
+                margin: 12px 0;
+            }
+ 
+            .route-intro {
+                padding: 12px;
+                margin-bottom: 12px;
+            }
+ 
+            .route-intro h4 {
+                font-size: 0.95em;
+            }
+ 
+            .route-intro p {
+                font-size: 0.85em;
             }
  
             .route-list {
-                max-height: 300px;
+                max-height: 250px;
+                gap: 8px;
+            }
+ 
+            .route-item {
+                padding: 10px;
+                gap: 8px;
+            }
+ 
+            .route-checkbox {
+                width: 20px;
+                height: 20px;
+            }
+ 
+            .route-name {
+                font-size: 0.9em;
+            }
+ 
+            .route-desc {
+                font-size: 0.75em;
+            }
+ 
+            .calendar-container {
+                padding: 12px;
+                margin-bottom: 12px;
+            }
+ 
+            .calendar-container h4 {
+                font-size: 0.95em;
+                margin-bottom: 10px;
+            }
+ 
+            .year-month-selector {
+                flex-direction: column;
+                gap: 10px;
+            }
+ 
+            .year-selector label,
+            .month-selector label {
+                font-size: 0.8em;
+                margin-bottom: 5px;
+            }
+ 
+            .year-selector select,
+            .month-selector select {
+                padding: 9px;
+                font-size: 0.85em;
+            }
+ 
+            .day-grid {
+                grid-template-columns: repeat(auto-fit, minmax(36px, 1fr));
+                gap: 5px;
+            }
+ 
+            .day-btn {
+                padding: 6px 3px;
+                font-size: 0.7em;
+                min-height: 42px;
+            }
+ 
+            .day-label {
+                font-size: 0.6em;
+            }
+ 
+            .day-number {
+                font-size: 0.85em;
+            }
+ 
+            .results-container h2 {
+                font-size: 1.2em;
+                margin-bottom: 15px;
+            }
+ 
+            .results-section h3 {
+                font-size: 0.95em;
+                margin-bottom: 10px;
+            }
+ 
+            .ranking-item {
+                padding: 10px;
+                gap: 10px;
+                margin-bottom: 8px;
+            }
+ 
+            .ranking-position {
+                width: 36px;
+                height: 36px;
+                font-size: 0.95em;
+            }
+ 
+            .ranking-title {
+                font-size: 0.85em;
+            }
+ 
+            .ranking-votes {
+                font-size: 0.75em;
+            }
+ 
+            .button-group {
+                gap: 6px;
+                margin-top: 15px;
+            }
+ 
+            button {
+                padding: 10px 16px;
+                font-size: 0.8em;
+                min-width: 120px;
+            }
+ 
+            .btn-small {
+                padding: 9px 14px;
+                font-size: 0.8em;
             }
         }
     </style>
@@ -593,7 +806,7 @@
         <!-- Header -->
         <div class="header">
             <h1>🎉 Familienausflug</h1>
-            <p>Familie Jenzer sucht das perfekten Abenteuer</p>
+            <p>Gemeinsam zum perfekten Abenteuer</p>
         </div>
  
         <!-- Progress -->
@@ -616,10 +829,10 @@
                 <div class="welcome-content">
                     <div class="emoji">🎂</div>
                     <h2>Willkommen!</h2>
-                    <p>Wir haben eine besondere Überraschung für Chayenne, Joel und Mirjam vorbereitet.</p>
+                    <p>Wir haben eine besondere Überraschung für euch vorbereitet.</p>
                     <p>Gemeinsam wollen wir einen unvergesslichen Ausflug unternehmen!</p>
                     
-                    <p style="margin-top: 30px; color: #666; font-size: 0.95em;">
+                    <p style="margin-top: 20px; color: #666; font-size: 0.9em;">
                         Inspirieren lassen? Schaut auf <strong>Suisse Partout</strong>:
                     </p>
                     <div class="link-box">
@@ -628,7 +841,7 @@
                         </a>
                     </div>
  
-                    <p style="margin-top: 20px; font-size: 0.9em; color: #999;">
+                    <p style="margin-top: 15px; font-size: 0.85em; color: #999;">
                         Dann wählt jeder seine Top 3 Lieblings-Ausflüge aus und wir bestimmen gemeinsam den besten Termin!
                     </p>
                 </div>
@@ -637,8 +850,9 @@
                 </div>
             </div>
  
-            <!-- Step 2: Route Selection (nacheinander pro Person) -->
+            <!-- Step 2: Route Selection -->
             <div class="step" data-step="1">
+                <div id="personHighlight" class="person-highlight"></div>
                 <div id="routeContainer"></div>
                 <div class="button-group">
                     <button class="btn-secondary btn-small" onclick="prevStep()">← Zurück</button>
@@ -646,8 +860,9 @@
                 </div>
             </div>
  
-            <!-- Step 3: Date Selection (Monat → Tage) -->
+            <!-- Step 3: Date Selection -->
             <div class="step" data-step="2">
+                <div id="personHighlightDate" class="person-highlight"></div>
                 <div id="dateContainer"></div>
                 <div class="button-group">
                     <button class="btn-secondary btn-small" onclick="prevStep()">← Zurück</button>
@@ -670,11 +885,11 @@
                         <div id="dateResults"></div>
                     </div>
  
-                    <div style="margin-top: 30px; padding: 15px; background: var(--light-bg); border-radius: 10px;">
-                        <p style="color: #666; font-size: 0.9em; margin-bottom: 10px;">
+                    <div style="margin-top: 20px; padding: 12px; background: var(--light-bg); border-radius: 10px;">
+                        <p style="color: #666; font-size: 0.85em; margin-bottom: 8px;">
                             💡 <strong>Nächste Schritte:</strong>
                         </p>
-                        <p style="color: #666; font-size: 0.9em; line-height: 1.6;">
+                        <p style="color: #666; font-size: 0.85em; line-height: 1.5;">
                             1. Den #1 Ausflug auswählen<br>
                             2. Den besten Termin festlegen<br>
                             3. Das Abenteuer wird Realität! 🚀
@@ -682,7 +897,7 @@
                     </div>
                 </div>
                 <div class="button-group">
-                    <button class="btn-secondary btn-small" onclick="resetAll()">Nochmal von vorne</button>
+                    <button class="btn-secondary btn-small" onclick="resetAll()">Nochmal</button>
                     <button class="btn-primary" onclick="shareResults()">Teilen</button>
                 </div>
             </div>
@@ -690,7 +905,7 @@
     </div>
  
     <script>
-        // Alle verfügbaren Ausflüge (erweiterbar)
+        // Alle verfügbaren Ausflüge
         const allRoutes = [
             { name: 'Wanderung Appenzell Alps', desc: 'Wunderschöne Berglandschaft', region: 'Ostschweiz' },
             { name: 'Rhine Falls', desc: 'Europas grösster Wasserfall', region: 'Zürich' },
@@ -710,21 +925,22 @@
         ];
  
         const config = {
-            people: ['Chayenne', 'Joel', 'Mirjam'],
+            people: ['👧 Tochter', '👦 Sohn', '👩 Mutter'],
             routes: allRoutes,
         };
  
         let currentStep = 0;
         let currentPersonRoute = 0;
-        let selectedMonth = null;
         let currentPersonDate = 0;
+        let selectedYear = 2026;
+        let selectedMonth = null;
  
         let data = {
             selections: {},
             dates: {},
         };
  
-        // ===== INITIALIZATION =====
+        // Initialisierung
         function init() {
             config.people.forEach(person => {
                 data.selections[person] = [];
@@ -736,26 +952,33 @@
             updateProgress();
         }
  
-        // ===== ROUTE SELECTION (NACHEINANDER PRO PERSON) =====
+        // Route Selection
         function renderRoutes() {
             const container = document.getElementById('routeContainer');
+            const highlight = document.getElementById('personHighlight');
             
             if (currentPersonRoute >= config.people.length) {
-                container.innerHTML = '<p style="text-align: center; padding: 20px; color: #667eea; font-weight: bold;">✓ Alle Personen haben ihre Top 3 gewählt!</p>';
+                container.innerHTML = '<p style="text-align: center; padding: 15px; color: #667eea; font-weight: bold;">✓ Alle Personen fertig!</p>';
+                highlight.innerHTML = '';
                 return;
             }
  
             const person = config.people[currentPersonRoute];
             const selected = data.selections[person] || [];
  
+            // Highlight
+            highlight.innerHTML = `
+                <h3>${person}</h3>
+                <p>Dein Turn! 📱 Gib das Handy weiter, wenn du fertig bist</p>
+            `;
+ 
             let html = `
                 <div class="person-section">
-                    <h3>👤 Hi ${person}</h3>
                     <div class="route-intro">
-                        <h4>Wähle deine Top 3 Ausflüge</h4>
-                        <p>Klick auf deine 3 liebsten Ausflüge. Du kannst sie noch ändern!</p>
-                        <p style="font-size: 0.85em; margin-top: 10px; font-weight: bold;">
-                            (${selected.length} von 3 ausgewählt)
+                        <h4>🎯 Top 3 Ausflüge wählen</h4>
+                        <p>Klick auf deine 3 liebsten Ausflüge!</p>
+                        <p style="font-size: 0.8em; margin-top: 8px; font-weight: bold; color: #667eea;">
+                            ${selected.length} von 3 ausgewählt
                         </p>
                     </div>
                     <div class="route-list">
@@ -790,54 +1013,75 @@
             renderRoutes();
         }
  
-        // ===== DATE SELECTION (MONAT → TAGE) =====
+        // Date Selection
         function renderDates() {
             const container = document.getElementById('dateContainer');
+            const highlight = document.getElementById('personHighlightDate');
             
             if (currentPersonDate >= config.people.length) {
-                container.innerHTML = '<p style="text-align: center; padding: 20px; color: #667eea; font-weight: bold;">✓ Alle Personen haben ihre Termine gewählt!</p>';
+                container.innerHTML = '<p style="text-align: center; padding: 15px; color: #667eea; font-weight: bold;">✓ Alle Personen fertig!</p>';
+                highlight.innerHTML = '';
                 return;
             }
  
             const person = config.people[currentPersonDate];
  
-            // Wenn kein Monat gewählt, zeige Monat-Auswahl
+            // Highlight
+            highlight.innerHTML = `
+                <h3>${person}</h3>
+                <p>Dein Turn! 📱 Gib das Handy weiter, wenn du fertig bist</p>
+            `;
+ 
             if (selectedMonth === null) {
+                // Jahr und Monat wählen
                 const months = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 
                                'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
                 
+                const currentYear = 2026;
+                const years = [2026, 2027, 2028];
+                
                 let html = `
                     <div class="calendar-container">
-                        <h4>👤 ${person} - Wähle einen Monat</h4>
-                        <div class="month-selector">
-                            ${months.map((month, idx) => `
-                                <button class="month-btn" onclick="selectMonth(${idx})">
-                                    ${month}
-                                </button>
-                            `).join('')}
+                        <h4>📅 Jahr und Monat wählen</h4>
+                        <div class="year-month-selector">
+                            <div class="year-selector">
+                                <label>Jahr</label>
+                                <select onchange="selectedYear = parseInt(this.value); renderDates();">
+                                    ${years.map(year => `
+                                        <option value="${year}" ${year === selectedYear ? 'selected' : ''}>${year}</option>
+                                    `).join('')}
+                                </select>
+                            </div>
+                            <div class="month-selector">
+                                <label>Monat</label>
+                                <select onchange="selectMonth(parseInt(this.value)); renderDates();">
+                                    <option value="">-- Monat wählen --</option>
+                                    ${months.map((month, idx) => `
+                                        <option value="${idx}">${month}</option>
+                                    `).join('')}
+                                </select>
+                            </div>
                         </div>
                     </div>
                 `;
                 container.innerHTML = html;
             } else {
-                // Zeige Tage-Auswahl für gewählten Monat
-                const days = getDaysInMonth(selectedMonth);
+                // Tage anzeigen
+                const days = getDaysInMonth(selectedMonth, selectedYear);
                 const months = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 
                                'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
                 
                 let html = `
                     <div class="calendar-container">
-                        <h4>👤 ${person} - Wähle Tage im ${months[selectedMonth]}</h4>
-                        <div style="margin-bottom: 15px;">
-                            <button class="month-btn" onclick="selectedMonth = null; renderDates();" style="width: 100%;">
-                                ← Zurück zum Monat
-                            </button>
-                        </div>
+                        <h4>📅 ${months[selectedMonth]} ${selectedYear}</h4>
+                        <button class="month-btn" onclick="selectedMonth = null; renderDates();" style="width: 100%; margin-bottom: 12px;">
+                            ← Zurück zu Jahr/Monat
+                        </button>
                         <div class="day-grid">
                             ${Array.from({ length: days }, (_, i) => {
                                 const day = i + 1;
-                                const dateStr = `2024-${String(selectedMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-                                const dayName = new Date(2024, selectedMonth, day).toLocaleDateString('de-CH', { weekday: 'short' });
+                                const dateStr = `${selectedYear}-${String(selectedMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                                const dayName = new Date(selectedYear, selectedMonth, day).toLocaleDateString('de-CH', { weekday: 'short' });
                                 const isSelected = data.dates[person] && data.dates[person].includes(dateStr);
                                 
                                 return `
@@ -848,7 +1092,7 @@
                                 `;
                             }).join('')}
                         </div>
-                        <p style="margin-top: 15px; font-size: 0.9em; color: #666; text-align: center; font-weight: bold;">
+                        <p style="margin-top: 10px; font-size: 0.85em; color: #666; text-align: center; font-weight: bold;">
                             ${data.dates[person] ? data.dates[person].length : 0} Tage ausgewählt
                         </p>
                     </div>
@@ -857,13 +1101,12 @@
             }
         }
  
-        function getDaysInMonth(month) {
-            return new Date(2024, month + 1, 0).getDate();
+        function getDaysInMonth(month, year) {
+            return new Date(year, month + 1, 0).getDate();
         }
  
         function selectMonth(monthIdx) {
             selectedMonth = monthIdx;
-            renderDates();
         }
  
         function toggleDate(dateStr) {
@@ -878,16 +1121,14 @@
             renderDates();
         }
  
-        // ===== NAVIGATION =====
+        // Navigation
         function nextStep() {
-            // Validierung für Route-Step
             if (currentStep === 1) {
                 const person = config.people[currentPersonRoute];
                 if (data.selections[person].length === 0) {
-                    alert(`Bitte wähle mindestens einen Ausflug für ${person}!`);
+                    alert(`Bitte wähle mindestens einen Ausflug!`);
                     return;
                 }
- 
                 currentPersonRoute++;
                 if (currentPersonRoute < config.people.length) {
                     renderRoutes();
@@ -895,14 +1136,12 @@
                 }
             }
  
-            // Validierung für Date-Step
             if (currentStep === 2) {
                 const person = config.people[currentPersonDate];
                 if (!data.dates[person] || data.dates[person].length === 0) {
-                    alert(`Bitte wähle mindestens einen Termin für ${person}!`);
+                    alert(`Bitte wähle mindestens einen Termin!`);
                     return;
                 }
- 
                 currentPersonDate++;
                 if (currentPersonDate < config.people.length) {
                     selectedMonth = null;
@@ -944,9 +1183,8 @@
             });
         }
  
-        // ===== RESULTS =====
+        // Results
         function renderResults() {
-            // Route Ranking
             const routeVotes = {};
             config.routes.forEach((_, idx) => {
                 routeVotes[idx] = 0;
@@ -968,7 +1206,6 @@
                 .sort((a, b) => b.votes - a.votes)
                 .filter(item => item.votes > 0);
  
-            // Date Ranking
             const dateVotes = {};
             config.people.forEach(person => {
                 if (data.dates[person]) {
@@ -982,7 +1219,6 @@
                 .map(([date, votes]) => ({ date, votes }))
                 .sort((a, b) => b.votes - a.votes);
  
-            // Route HTML
             const maxVotes = routeRanking[0]?.votes || 1;
             const routeHTML = routeRanking.map((item, idx) => {
                 const percentage = (item.votes / maxVotes) * 100;
@@ -1002,10 +1238,9 @@
  
             document.getElementById('resultsRanking').innerHTML = routeHTML || '<p>Keine Votes</p>';
  
-            // Date HTML
             const dateHTML = dateRanking.slice(0, 5).map(item => {
                 const date = new Date(item.date + 'T12:00:00');
-                const formatted = date.toLocaleDateString('de-CH', { weekday: 'short', year: 'numeric', month: '2-digit', day: '2-digit' });
+                const formatted = date.toLocaleDateString('de-CH', { weekday: 'short', year: '2-digit', month: '2-digit', day: '2-digit' });
                 return `
                     <div class="ranking-item">
                         <div class="ranking-position">${item.votes}</div>
@@ -1035,6 +1270,7 @@
             currentPersonRoute = 0;
             currentPersonDate = 0;
             selectedMonth = null;
+            selectedYear = 2026;
             config.people.forEach(person => {
                 data.selections[person] = [];
                 data.dates[person] = [];
@@ -1054,7 +1290,7 @@
                 }, {});
             
             const bestRoute = Object.entries(topRoute).sort((a, b) => b[1] - a[1])[0];
-            const text = `Unser Familienausflug: ${config.routes[bestRoute[0]].name}! 🏔️ ✈️ 🗺️`;
+            const text = `Unser Familienausflug: ${config.routes[bestRoute[0]].name}! 🏔️ ✈️`;
             
             if (navigator.share) {
                 navigator.share({ title: 'Familienausflug', text });
@@ -1063,7 +1299,6 @@
             }
         }
  
-        // Initialize
         window.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
